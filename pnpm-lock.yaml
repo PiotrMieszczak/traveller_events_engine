@@ -17,6 +17,12 @@ importers:
       '@nx/react':
         specifier: latest
         version: 22.5.4(@babel/core@7.29.0)(@babel/traverse@7.29.0)(@swc/helpers@0.5.15)(@zkochan/js-yaml@0.0.7)(eslint@10.0.3(jiti@2.4.2))(nx@22.5.4)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)(vite@7.3.1(@types/node@25.5.0)(jiti@2.4.2)(less@4.6.3)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.0)(yaml@2.8.2))(vitest@4.1.0(@types/node@25.5.0)(vite@7.3.1(@types/node@25.5.0)(jiti@2.4.2)(less@4.6.3)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.0)(yaml@2.8.2)))
+      '@types/react':
+        specifier: ^18.3.28
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18.3.7
+        version: 18.3.7(@types/react@18.3.28)
       nx:
         specifier: latest
         version: 22.5.4
@@ -26,6 +32,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@drinax/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       '@mantine/core':
         specifier: ^7.17.0
         version: 7.17.8(@mantine/hooks@7.17.8(react@18.3.1))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -66,6 +75,18 @@ importers:
       typescript:
         specifier: ^5.4.0
         version: 5.9.3
+
+  packages/map-tokens:
+    dependencies:
+      react:
+        specifier: '>=18'
+        version: 18.3.1
+    devDependencies:
+      '@types/react':
+        specifier: ^18.3.0
+        version: 18.3.28
+
+  packages/types: {}
 
 packages:
 
