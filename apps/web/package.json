@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@drinax/map-tokens": "workspace:*",
     "@drinax/types": "workspace:*",
     "@mantine/core": "^7.17.0",
     "@mantine/hooks": "^7.17.0",

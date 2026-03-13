@@ -4,6 +4,7 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import classes from './TravellerMap.module.css'
+import EntityLayer from './EntityLayer'
 
 // Tile URL routes through our Next.js proxy which converts z/x/y
 // to travellermap's x/y/scale format
@@ -38,6 +39,7 @@ export default function TravellerMap({ entities = [] }: TravellerMapProps) {
           tileSize={256}
           noWrap={true}
         />
+        <EntityLayer entities={entities} />
       </MapContainer>
     </div>
   )
