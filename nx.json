@@ -23,6 +23,10 @@
     },
     "test": {
       "cache": true
+    },
+    "lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
     }
   },
   "plugins": [
