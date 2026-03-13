@@ -1,0 +1,20 @@
+{
+  "name": "drinax-engine",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nx run-many --target=dev --projects=web",
+    "build": "nx run-many --target=build",
+    "test": "nx run-many --target=test",
+    "api:dev": "cd apps/api && uv run uvicorn main:app --reload --port 8000",
+    "api:test": "cd apps/api && uv run pytest",
+    "graph": "nx graph"
+  },
+  "devDependencies": {
+    "nx": "latest",
+    "@nx/next": "latest",
+    "@nx/js": "latest",
+    "@nx/react": "latest",
+    "typescript": "^5.4.0"
+  }
+}
