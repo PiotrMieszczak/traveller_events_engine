@@ -1,7 +1,12 @@
+import dynamic from 'next/dynamic'
+import { Box } from '@mantine/core'
+
+// SSR must be disabled — Leaflet requires window/document
+const TravellerMap = dynamic(
+  () => import('../components/TravellerMap'),
+  { ssr: false, loading: () => <Box h="100vh" bg="dark.9" /> }
+)
+
 export default function HomePage() {
-  return (
-    <main style={{ minHeight: '100vh', background: '#0a0a1a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <h1 style={{ color: '#00ffff', fontFamily: 'monospace' }}>Drinax Engine</h1>
-    </main>
-  )
+  return <TravellerMap />
 }
