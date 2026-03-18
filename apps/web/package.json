@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@drinax/map-tokens": "workspace:*",
+    "chat-ag-ui": "workspace:*",
     "@drinax/types": "workspace:*",
     "@mantine/core": "^7.17.0",
     "@mantine/hooks": "^7.17.0",
