@@ -1,0 +1,131 @@
+/* Full-screen loader overlay — sits above the map while sector image fetches */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  background: #05060f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Corner bracket frame */
+.frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 40px 48px;
+}
+
+.frame::before,
+.frame::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #3a7ca5;
+  border-style: solid;
+}
+
+.frame::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+
+.frame::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+}
+
+/* ── Ship SVG ── */
+.ship {
+  width: 96px;
+  height: 144px;
+  overflow: visible;
+  filter: drop-shadow(0 0 8px rgba(58, 124, 165, 0.5));
+}
+
+.shipOutline polygon,
+.shipOutline rect,
+.shipOutline ellipse,
+.shipOutline line {
+  fill: none;
+  stroke: #3a7ca5;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Inner fill shapes — blueish grey, revealed by animated clip */
+.shipFill polygon,
+.shipFill rect,
+.shipFill ellipse {
+  fill: #1e3d54;
+  stroke: none;
+}
+
+/* The fill rect slides up — y goes from 180 (hidden) to 0 (fully revealed) */
+.fillRect {
+  animation: fillUp 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes fillUp {
+  0%   { y: 180; height: 0; }
+  60%  { y: 0;   height: 180; }
+  85%  { y: 0;   height: 180; }
+  100% { y: 180; height: 0; }
+}
+
+/* ── Text label ── */
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.15em;
+  line-height: 1;
+}
+
+.prefix {
+  font-size: 10px;
+  color: #3a7ca5;
+  opacity: 0.7;
+}
+
+.status {
+  font-size: 11px;
+  color: #7ab8d4;
+  animation: blink 1.2s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ── Scanline sweep ── */
+.scanline {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(58, 124, 165, 0.03) 3px,
+    rgba(58, 124, 165, 0.03) 4px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fillRect { animation: none; }
+  .status   { animation: none; }
+}
