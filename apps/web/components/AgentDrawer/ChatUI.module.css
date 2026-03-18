@@ -1,0 +1,161 @@
+/* apps/web/components/AgentDrawer/ChatUI.module.css */
+
+.chatUI {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f8f9fa;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Status bar */
+.statusBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e0e8f0;
+  background: #f0f4f8;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #aaa;
+}
+
+.statusText { color: #6a8090; }
+
+.status_connected .statusDot { background: #2a7a44; }
+.status_connected .statusText { color: #2a7a44; }
+.status_connecting .statusDot { background: #c07a10; animation: pulse 1s infinite; }
+.status_error .statusDot { background: #b02020; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Message list */
+.messageList {
+  flex: 1;
+  padding: 12px 14px;
+  gap: 8px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.emptyState {
+  color: #9aacbc;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Bubbles */
+.bubble {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.userBubble {
+  background: #1a6090;
+  color: #fff;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.agentBubble {
+  background: #fff;
+  border: 1px solid #d8e4ec;
+  color: #1a2e3e;
+  align-self: flex-start;
+}
+
+.role {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  opacity: 0.6;
+  font-family: 'Courier New', monospace;
+}
+
+.text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Typing indicator */
+.typingIndicator {
+  display: flex;
+  gap: 4px;
+  padding: 8px 12px;
+  align-self: flex-start;
+}
+
+.typingIndicator span {
+  width: 6px;
+  height: 6px;
+  background: #9aacbc;
+  border-radius: 50%;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+.typingIndicator span:nth-child(2) { animation-delay: 0.2s; }
+.typingIndicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+/* Input row */
+.inputRow {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid #d8e4ec;
+  background: #fff;
+}
+
+.input {
+  flex: 1;
+  border: 1px solid #c8d4dc;
+  border-radius: 4px;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #1a2e3e;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus { border-color: #3a7ca5; }
+.input:disabled { background: #f0f4f8; color: #9aacbc; }
+
+.sendButton {
+  padding: 7px 16px;
+  background: #1a6090;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+
+.sendButton:hover:not(:disabled) { background: #15507a; }
+.sendButton:disabled { background: #b0c8d8; cursor: not-allowed; }
