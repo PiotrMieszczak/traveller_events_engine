@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Text, Badge, Group } from '@mantine/core'
 import { useGameState } from '../../../hooks/useGameState'
+import AgentDrawer from '../../../components/AgentDrawer'
 
 // SSR must be disabled for Leaflet
 const TravellerMap = dynamic(
@@ -52,6 +53,7 @@ export default function CampaignView({ campaignId, role }: CampaignViewProps) {
       )}
 
       <TravellerMap entities={entities} />
+      <AgentDrawer entities={entities} />
     </Box>
   )
 }
