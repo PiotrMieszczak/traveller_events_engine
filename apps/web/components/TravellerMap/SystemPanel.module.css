@@ -1,129 +1,221 @@
-/* HUD panel — fixed to bottom-right of the map wrapper, never blocks the map */
+/* ═══════════════════════════════════════════════
+   System Info Panel — sci-fi HUD, bottom-right
+   ═══════════════════════════════════════════════ */
 
 .panel {
   position: absolute;
   bottom: 24px;
   right: 24px;
   z-index: 800;
-  width: 300px;
-  max-height: calc(100% - 48px);
+  width: 340px;
+  max-height: calc(100vh - 80px);
   overflow-y: auto;
-  background: rgba(5, 8, 20, 0.92);
-  border: 1px solid #1e3d54;
-  border-top: 2px solid #3a7ca5;
-  backdrop-filter: blur(8px);
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
-  color: #a8c8dc;
-  scrollbar-width: thin;
-  scrollbar-color: #1e3d54 transparent;
+  overflow-x: hidden;
 
-  /* Entry animation */
-  animation: slideIn 0.18s ease-out;
+  background: #f5f7f9;
+  border: 1px solid #c8d4dc;
+  border-top: none;
+
+  font-family: 'Courier New', Courier, monospace;
+  color: #2a3a48;
+  scrollbar-width: thin;
+  scrollbar-color: #b0c0cc transparent;
+
+  animation: slideIn 0.16s cubic-bezier(0.2, 0, 0, 1);
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-/* ── Header ── */
+/* ── Top accent bar + header ── */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
-  border-bottom: 1px solid #1e3d54;
+  padding: 0 14px;
+  height: 36px;
+  background: #f5f7f9;
+  border-top: 2px solid #3a7ca5;
+  border-bottom: 1px solid #d0dce6;
   position: sticky;
   top: 0;
-  background: rgba(5, 8, 20, 0.98);
+  z-index: 1;
 }
 
 .hexCode {
   font-size: 10px;
-  letter-spacing: 0.2em;
-  color: #3a7ca5;
+  letter-spacing: 0.25em;
+  color: #4a7a9a;
+  text-transform: uppercase;
 }
 
 .close {
   background: none;
-  border: none;
-  color: #3a7ca5;
+  border: 1px solid transparent;
+  color: #7a9ab0;
   cursor: pointer;
-  font-size: 12px;
-  padding: 0 2px;
-  line-height: 1;
-  transition: color 0.15s;
-}
-
-.close:hover { color: #7ab8d4; }
-
-/* ── World name ── */
-.worldName {
-  padding: 12px 12px 4px;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  color: #e0f0ff;
-  line-height: 1.2;
-}
-
-/* ── UWP badge ── */
-.uwpBadge {
+  font-size: 11px;
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 12px 10px;
+  justify-content: center;
+  border-radius: 2px;
+  transition: color 0.15s, border-color 0.15s;
+  line-height: 1;
+}
+.close:hover {
+  color: #2a5a7a;
+  border-color: #b0c8d8;
+}
+
+/* ── World identity block ── */
+.identity {
+  padding: 16px 14px 12px;
+  border-bottom: 1px solid #d0dce6;
+}
+
+.worldName {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0f1e2e;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+/* Zone + UWP row */
+.uwpRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .zone {
   font-size: 9px;
-  font-weight: bold;
-  letter-spacing: 0.15em;
-  padding: 2px 6px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 3px 7px;
   border-radius: 2px;
-}
-
-.zoneGreen { background: rgba(40, 120, 60, 0.4); color: #5dda7a; border: 1px solid #3a7a50; }
-.zoneAmber { background: rgba(140, 100, 20, 0.4); color: #e0b040; border: 1px solid #a07020; }
-.zoneRed   { background: rgba(140, 30, 30, 0.4);  color: #e05050; border: 1px solid #a03030; }
-
-.uwpCode {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  color: #7ab8d4;
-}
-
-/* ── Section headers ── */
-.section {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  color: #3a7ca5;
-  padding: 8px 12px 4px;
-  border-top: 1px solid rgba(58, 124, 165, 0.2);
-  margin-top: 4px;
-}
-
-/* ── Data rows ── */
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-  padding: 3px 12px;
-}
-
-.rowLabel {
-  color: #5a8aaa;
-  font-size: 10px;
   flex-shrink: 0;
 }
+.zoneGreen { background: #2a7a44; color: #fff; border: none; }
+.zoneAmber { background: #c07a10; color: #fff; border: none; }
+.zoneRed   { background: #b02020; color: #fff; border: none; }
 
-.rowValue {
-  color: #c8e4f4;
-  font-size: 10px;
-  text-align: right;
-  word-break: break-word;
+/* UWP broken into individual character cells */
+.uwpStrip {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+}
+
+.uwpCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.uwpChar {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a6090;
+  letter-spacing: 0;
+  line-height: 1;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.uwpDash {
+  font-size: 15px;
+  font-weight: 400;
+  color: #b0c8d8;
+  line-height: 1;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0 1px;
+  align-self: center;
+}
+
+.uwpLabel {
+  font-size: 7px;
+  color: #8aacbc;
+  letter-spacing: 0;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 12px 14px 0;
+}
+
+.sectionTitle {
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  color: #4a7a9a;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionTitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #d0dce6;
+}
+
+/* ── Data grid — 2-col layout inside sections ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #d0dce6;
+  border: 1px solid #c8d4dc;
+  border-radius: 2px;
+  margin-bottom: 4px;
+  overflow: hidden;
+}
+
+.cell {
+  background: #f5f7f9;
+  padding: 7px 10px;
+}
+
+.cell.full {
+  grid-column: 1 / -1;
+}
+
+.cellLabel {
+  font-size: 8px;
+  color: #7a9ab0;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.cellValue {
+  font-size: 12px;
+  color: #1a2e3e;
+  line-height: 1.3;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.cellValue.accent {
+  color: #1a6090;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cellValue.dim {
+  color: #4a6a80;
+  font-size: 11px;
 }
 
 /* ── Trade code tags ── */
@@ -131,35 +223,40 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  padding: 4px 12px 8px;
+  padding: 0 14px 4px;
+  margin-top: 6px;
 }
 
 .tag {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.1em;
-  padding: 2px 6px;
-  background: rgba(58, 124, 165, 0.15);
-  border: 1px solid rgba(58, 124, 165, 0.3);
-  color: #7ab8d4;
+  padding: 3px 8px;
+  background: #e4edf4;
+  border: 1px solid #b8ccd8;
+  color: #1a5070;
   border-radius: 2px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-/* ── Loading dots ── */
+/* ── Bottom padding ── */
+.spacer { height: 14px; }
+
+/* ── Loading ── */
 .loading {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 6px;
-  padding: 20px;
+  padding: 28px;
 }
 
 .loadingDot {
   width: 5px;
   height: 5px;
-  background: #3a7ca5;
+  background: #4a8aaa;
   border-radius: 50%;
   animation: pulse 1s ease-in-out infinite;
 }
-
 .loadingDot:nth-child(2) { animation-delay: 0.2s; }
 .loadingDot:nth-child(3) { animation-delay: 0.4s; }
 
@@ -168,41 +265,29 @@
   50%       { opacity: 1;   transform: scale(1.2); }
 }
 
-/* ── Empty hex ── */
+/* ── Empty / error ── */
 .empty {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 20px;
-  color: #3a7ca5;
+  gap: 10px;
+  padding: 28px 14px;
+  color: #7a9ab0;
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
+  text-align: center;
 }
 
 .emptyGlyph {
-  font-size: 28px;
-  opacity: 0.3;
+  font-size: 32px;
+  opacity: 0.25;
+  line-height: 1;
 }
 
-/* ── Scanline overlay ── */
-.scanline {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(58, 124, 165, 0.02) 3px,
-    rgba(58, 124, 165, 0.02) 4px
-  );
-  pointer-events: none;
-}
-
-/* Scrollbar */
-.panel::-webkit-scrollbar { width: 4px; }
+/* ── Scrollbar ── */
+.panel::-webkit-scrollbar { width: 3px; }
 .panel::-webkit-scrollbar-track { background: transparent; }
-.panel::-webkit-scrollbar-thumb { background: #1e3d54; border-radius: 2px; }
+.panel::-webkit-scrollbar-thumb { background: rgba(58, 124, 165, 0.3); border-radius: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   .panel { animation: none; }
