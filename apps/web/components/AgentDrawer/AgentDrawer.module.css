@@ -1,0 +1,75 @@
+/* Trigger pill button */
+.trigger {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  padding: 8px 20px;
+  background: #1a6090;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(26, 96, 144, 0.4);
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.trigger:hover {
+  background: #15507a;
+  box-shadow: 0 4px 16px rgba(26, 96, 144, 0.5);
+  transform: translateX(-50%) translateY(-1px);
+}
+
+/* Drawer */
+.drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: #f8f9fa;
+  border-top: 2px solid #3a7ca5;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: height 0.2s cubic-bezier(0.2, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerOpen {
+  /* height is set inline */
+}
+
+/* Drag handle */
+.handle {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ns-resize;
+  flex-shrink: 0;
+  background: #f0f4f8;
+  border-bottom: 1px solid #d8e4ec;
+  user-select: none;
+}
+
+.handle:hover { background: #e4edf4; }
+
+.handleGrip {
+  width: 32px;
+  height: 3px;
+  background: #b0c8d8;
+  border-radius: 2px;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
